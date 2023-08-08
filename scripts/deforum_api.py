@@ -11,6 +11,7 @@ from dataclasses import dataclass, replace
 from datetime import datetime
 from typing import Any, Dict, List
 from deforum_api_models import Batch, DeforumJobErrorType, DeforumJobStatusCategory, DeforumJobPhase, DeforumJobStatus
+from deforum_extend_paths import deforum_sys_extend
 from contextlib import contextmanager
 
 
@@ -108,7 +109,8 @@ def run_deforum_batch(batch_id: str, job_ids: [str], deforum_settings_files: Lis
 # Each submitted batch will be given a batch ID which the user can use to query the status of all jobs in the batch.
 #
 def deforum_api(_: gr.Blocks, app: FastAPI):  
-
+    deforum_sys_extend()
+  
     apiState = ApiState()
 
     # Submit a new batch
